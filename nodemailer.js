@@ -11,13 +11,13 @@ const mailer = (subject, text) => {
     service: "Gmail",
     auth: {
       user: "fantasticelastic2021",
-      pass: "pulsen2021",
+      pass: "password", //password till email här
     },
   });
 
   let mailMessage = {
     //from: "test@localhost",
-    to: "Andreas.vm.berg@gmail.com",
+    to: "", //Mottagare här
     subject: subject,
     text: text,
   };
