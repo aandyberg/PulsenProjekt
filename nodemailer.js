@@ -11,13 +11,13 @@ const mailer = (subject, text) => {
     service: "Gmail",
     auth: {
       user: "fantasticelastic2021",
-      pass: "password", //password till email här
+      pass: "2021pulsen!", //password till email här
     },
   });
 
   let mailMessage = {
     //from: "test@localhost",
-    to: "", //Mottagare här
+    to: "andreas.vm.berg@gmail.com", //Mottagare här
     subject: subject,
     text: text,
   };
@@ -27,7 +27,7 @@ const mailer = (subject, text) => {
       console.log(err);
     } else {
       console.log("Sent!");
-      console.log(JSON.stringify(res));
+      console.log(res);
     }
   });
 };
