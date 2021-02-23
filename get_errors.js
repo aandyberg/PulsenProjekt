@@ -1,35 +1,29 @@
 const { events, Client, errors } = require("@elastic/elasticsearch");
-const { ResponseError } = require("@elastic/elasticsearch/lib/errors");
-const { timeStamp } = require("console");
 const client = new Client({
   node: "http://localhost:9200",
 });
 const nodemailer = require("./nodemailer");
 
-/*client.ping({}, { requestTimeout: 3000 }, (err, response) => {
-  if (err) {
-    console.log("här");
-    console.log(err);
-  } else {
-    console.log(response);
-  }
-});*/
-let lastTimstamp = Date.now().toString;
-let count = 0;
+//Sets lasttimestamp to current time
+let currentTime = new Date();
+let lastTimestamp = currentTime.toISOString();
+
 function errorCheck() {
   client.search(
     {
+      // which index to search
       index: "testdata",
       body: {
         size: 10000,
         sort: [{ timestamp: { order: "desc" } }],
+        //searches must match error && in range of timestamp > lasttimestamp
         query: {
           bool: {
             must: [
               {
                 range: {
                   timestamp: {
-                    gt: lastTimstamp,
+                    gt: lastTimestamp,
                   },
                 },
               },
@@ -45,28 +39,32 @@ function errorCheck() {
       if (err) {
         console.log(err.meta.body.error);
       } else {
+        //maps all the timestamps and sorts the timestamps
         nbrObjects = result.body.hits.hits
           .map((hits) => hits._source.timestamp)
           .sort();
+
+        // checks if there are any new errors, nbrObjects is not empty
         if (nbrObjects.length > 0) {
-          lastTimstamp = nbrObjects[nbrObjects.length - 1];
-          if (count > 0) {
-            console.log(lastTimstamp);
-            //console.log(result.body.hits.hits.map((hits) => hits._source.level));
-            result.body.hits.hits.forEach((object) => {
-              stringified = JSON.stringify(object);
-              console.log(stringified);
-              nodemailer.mailer("Error in logfiles", stringified);
-            });
-          }
+          //gets the last timestamp in the list
+          lastTimestamp = nbrObjects[nbrObjects.length - 1];
+          //Takes every hit, stringifies it and mails it to the
+          result.body.hits.hits.forEach((object) => {
+            stringified = JSON.stringify(object);
+            nodemailer.mailer(
+              "Error in logfiles",
+              stringified,
+              process.argv[2]
+            );
+          });
+        } else {
+          console.log("No new errors found");
         }
       }
-      console.log(count);
-      count++;
     }
   );
 }
-
+//Calls erroCheck 1 time
 errorCheck();
 //calls the function every 5 seconds
 setInterval(errorCheck, 5000);
