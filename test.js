@@ -5,7 +5,7 @@ const client = new Client({
 });
 const nodemailer = require("./nodemailer");
 
-function checker() {
+/*function checker() {
   client.search(
     {
       index: "testindex",
@@ -28,4 +28,10 @@ function checker() {
   );
 }
 
-setInterval(checker, 5000);
+setInterval(checker, 5000);*/
+
+let fruits = { apple: "red", pear: "green", banana: "yellow", plum: "purple" };
+console.log(fruits);
+for (let k in fruits) {
+  console.log(k + " is " + fruits[k]);
+}

@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const fs = require("fs");
 
 //takes 3 parameters, subject, the text to the email and the recipient
 const mailer = (subject, text, recipient) => {
@@ -12,7 +13,7 @@ const mailer = (subject, text, recipient) => {
     service: "Gmail",
     auth: {
       user: "fantasticelastic2021",
-      pass: "", //password till email här
+      pass: "2021pulsen!", //password till email här
     },
   });
 
