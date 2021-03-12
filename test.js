@@ -4,7 +4,6 @@ const client = new Client({
   log: "error",
 });
 const nodemailer = require("./nodemailer");
-
 /*function checker() {
   client.search(
     {

@@ -16,7 +16,7 @@ function errorCheck() {
   client.search(
     {
       // which index to search
-      index: "testdata",
+      index: "testindex",
       body: {
         size: 10000,
         sort: [{ timestamp: { order: "desc" } }],
@@ -32,7 +32,7 @@ function errorCheck() {
                 },
               },
               {
-                match: { level: "ERROR" },
+                match: { logLevel: "ERROR" },
               },
             ],
           },
