@@ -92,7 +92,7 @@ function errorCheck() {
                   ignoreList[sendingSyst] = Date.now() + halfDayinMiliseconds;
                   console.log(
                     " Sent mail and Added " +
-                      ssn +
+                      sendingSyst +
                       " to ignoreList for 12 hours"
                   );
                 }

@@ -31,7 +31,6 @@ const run = async () => {
                 console.log(err);
               } else {
                 if (res.statusCode == 201) {
-                  console.log("Inserted log");
                 } else {
                   console.log(res.statusCode);
                 }
@@ -39,7 +38,7 @@ const run = async () => {
             }
           );
           console.log("Log sent");
-        }, i * 60000); //1 min
+        }, i * 500); //1 min
       });
     }
   });
