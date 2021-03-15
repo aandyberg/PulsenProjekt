@@ -1,0 +1,13 @@
+{
+  "timeStamp": "",
+  "sendingSystem": "",
+  "receivingSystem": "",
+  "logLevel": "",
+  "errorMessage": "",
+  "messageId": "",
+  "operationType": "",
+  "studentId": "",
+  "faculty": "",
+  "fullTimeStudy": true,
+  "payLoad": "{\"studentId\": \"\",\"firstName\": \"\",\"lastName\": \"\",\"age\": 0,\"address\": {\"city\": \"Stenkullen\",\"postCode\": \"443 72\",\"street\": \"Hagag 30\"},\"faculty\": \"\",\"fullTimeStudy\": true,\"internationalStudent\": false}"
+}

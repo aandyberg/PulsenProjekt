@@ -1,15 +1,8 @@
 const nodemailer = require("nodemailer");
-const fs = require("fs");
 
 //takes 3 parameters, subject, the text to the email and the recipient
 const mailer = (subject, text, recipient) => {
   let transporter = nodemailer.createTransport({
-    /*port: 587,
-    host: "smtp.ethereal.email",
-    auth: {
-      user: "brenden.heaney74@ethereal.email",
-      pass: "eF6rE2vuTx4MDeS5U9",
-    },*/
     service: "Gmail",
     auth: {
       user: "fantasticelastic2021",
@@ -18,7 +11,6 @@ const mailer = (subject, text, recipient) => {
   });
 
   let mailMessage = {
-    //from: "test@localhost",
     to: recipient, //Mottagare här
     subject: subject,
     text: text,

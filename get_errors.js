@@ -61,9 +61,6 @@ function errorCheck() {
             );
           }
         }
-        /*for (let key in ignoreList) {
-          console.log(ignoreList[key]);
-        }*/
         // checks if there are any new errors, nbrObjects is not empty
         if (nbrObjects.length > 0) {
           //gets the last timestamp in the list
@@ -71,7 +68,7 @@ function errorCheck() {
 
           //Checks if object in ignorelist, if not sends mail and adds it for 12 hours
           result.body.hits.hits.forEach((object) => {
-            if (object._source.ssn in ignoreList) {
+            if (object._source.sendingSystem in ignoreList) {
               console.log("I ignoreList");
             } else {
               //Takes every hit, stringifies it and mails it to the
@@ -80,7 +77,6 @@ function errorCheck() {
                   console.log(err);
                   return;
                 } else {
-                  //test = data.replace(/\r\n|\n/g, ",");
                   mailListArray = data.split(/\r\n|\n/);
                   //Sends mail
                   result.body.hits.hits.forEach((object) => {
@@ -92,8 +88,8 @@ function errorCheck() {
                     );
                   });
                   //Adds it to ignoreList
-                  let ssn = object._source.ssn;
-                  ignoreList[ssn] = Date.now() + halfDayinMiliseconds;
+                  let sendingSyst = object._source.sendingSystem;
+                  ignoreList[sendingSyst] = Date.now() + halfDayinMiliseconds;
                   console.log(
                     " Sent mail and Added " +
                       ssn +
