@@ -79,14 +79,14 @@ function errorCheck() {
                 } else {
                   mailListArray = data.split(/\r\n|\n/);
                   //Sends mail
-                  result.body.hits.hits.forEach((object) => {
-                    stringified = JSON.stringify(object);
-                    nodemailer.mailer(
-                      "Error in logfiles",
-                      stringified,
-                      mailListArray
-                    );
-                  });
+                  //result.body.hits.hits.forEach((object) => {
+                  stringified = JSON.stringify(object);
+                  nodemailer.mailer(
+                    "Error in logfiles",
+                    stringified,
+                    mailListArray
+                  );
+                  //});
                   //Adds it to ignoreList
                   let sendingSyst = object._source.sendingSystem;
                   ignoreList[sendingSyst] = Date.now() + halfDayinMiliseconds;
