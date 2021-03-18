@@ -38,7 +38,7 @@ const run = async () => {
             }
           );
           console.log("Log sent");
-        }, i * 500); //1 min
+        }, i * 60000); //1 min
       });
     }
   });
